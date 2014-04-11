@@ -40,12 +40,20 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 --%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
-    </head>
-    <body>
-    <jsp:forward page="ListPerson" />
-    </body>
+    <div id="sse50">
+        <div id="sses50" style="width: 324px;">
+            <ul>
+                <li><jsp:forward page="ListPerson" /></li>
+                <li><a href="?p=Horizontal-Menus" class="current">Horizontal Menus</a></li>
+                <li><a href="?p=Web-Menus" class="">Web Menus</a></li>
+            </ul>
+        </div>
+    </div>
+</head>
+<body>
+</body>
 </html>
