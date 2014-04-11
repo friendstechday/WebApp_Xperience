@@ -35,25 +35,83 @@ The taglib directive below imports the JSTL library. If you uncomment it,
 you must also add the JSTL library to the project. The Add Library... action
 on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 --%>
-<%--
+
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
---%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
-    <div id="sse50">
-        <div id="sses50" style="width: 324px;">
-            <ul>
-                <li><jsp:forward page="ListPerson" /></li>
-                <li><a href="?p=Horizontal-Menus" class="current">Horizontal Menus</a></li>
-                <li><a href="?p=Web-Menus" class="">Web Menus</a></li>
-            </ul>
+        <link href="<c:url value='/menu-2.css' />" rel="stylesheet" type="text/css" />
+        <script type="text/javascript">
+            var sse50 = function() {
+                return {
+                    initMenu: function() {
+                        var m = document.getElementById('sses50');
+                        if (!m)
+                            return;
+                        m.style.width = m.getElementsByTagName("ul")[0].offsetWidth + 1 + "px";
+                        var url = document.location.href.toLowerCase();
+                        var a = m.getElementsByTagName("a");
+                        var k = -1;
+                        var l = -1;
+                        var hasEnd = 0;
+                        for (var i = 0; i < a.length; i++) {
+                            if (a[i].href && url.indexOf(a[i].href.toLowerCase()) !== -1 && a[i].href.length > l) {
+                                k = i;
+                                l = a[i].href.length;
+                            }
+                            if (a[i].className === "end")
+                                hasEnd = 1;
+                        }
+                        if (k === -1 && /:\/\/(?:www\.)?[^.\/]+?\.[^.\/]+\/?$/.test) {
+                            for (var i = 0; i < a.length; i++) {
+                                if (a[i].getAttribute("maptopuredomain") === "true") {
+                                    k = i;
+                                    break;
+                                }
+                            }
+                            if (k === -1 && a[0].getAttribute("maptopuredomain") !== "false")
+                                k = 0;
+                        }
+                        if (k > -1) {
+                            a[k].className = 'current';
+                        }
+                        l = a.length;
+                        if (hasEnd)
+                            l--;
+                        for (i = 0; i < l; i++) {
+                            a[i].onmouseover = function() {
+                                for (j = 0; j < l; j++) {
+                                    a[j].className = '';
+                                }
+                                this.className = 'current';
+                            };
+                            a[i].onmouseout = function() {
+                                for (j = 0; j < l; j++) {
+                                    a[j].className = '';
+                                    if (k > -1) {
+                                        a[k].className = 'current';
+                                    }
+                                }
+                            };
+                        }
+                    }
+                };
+            }();
+        </script>
+    </head>
+    <body>
+        <div id="sse50">
+            <div id="sses50">
+                <ul>
+                    <li><a href="?menu=50&skin=2&p=Javascript-Menus"><a href="ListPerson.jsp"><strong>List a Person Record</strong></a></a></li>
+                    <li><a href="?menu=50&skin=2&p=Horizontal-Menus">Horizontal Menus</a></li>
+                    <li><a href="?menu=50&skin=2&p=Web-Menus">Web Menus</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</head>
-<body>
-</body>
+
+    </body>
 </html>
