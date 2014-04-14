@@ -31,8 +31,6 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
-<link href="<c:url value='/WEB-CONTENT/css/menu-2.css' />" rel="stylesheet" type="text/css" />
-<link href="<c:url value='/WEB-CONTENT/js/menu.js' />" rel="javascript" type="text/javascript" />
 
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -40,35 +38,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>List Of Persons</title>
+        <title>Create a Product Record</title>
     </head>
     <body>
 
-        <h1>List of Persons currently in Database</h1>
-
-        <table id="personListTable" border="3">
-            <tr >
-                <th bgcolor=>ID</th>
-                <th bgcolor=>FirstName</th>
-                <th bgcolor=>LastName</th>
-                <th bgcolor=>docRG</th>
-                <th bgcolor=>docCPF</th>
-                <th bgcolor=>dataNasc</th>
-            </tr>
-            <c:forEach var="person" begin="0" items="${requestScope.personList}">
-                <tr>
-                    <td>${person.id}&nbsp;&nbsp;</td> 
-                    <td>${person.firstName}&nbsp;&nbsp;</td> 
-                    <td>${person.lastName}&nbsp;&nbsp;</td> 
-                    <td>${person.docRG}&nbsp;&nbsp;</td> 
-                    <td>${person.docCPF}&nbsp;&nbsp;</td> 
-                    <td>${person.dataNasc}&nbsp;&nbsp;</td> 
-                </tr> 
-
-            </c:forEach>
-
-        </table>
-        <a href="CreatePerson.jsp"><strong>Create a Person Record</strong></a>
+        <h1>Create a Product record</h1>
+        <form id="createProductForm" action="CreateProduct" method="post">
+            <table>
+                <tr><td>Descrição</td><td><input type="text" id = "descricao" name="descricao" /></td></tr>
+                <tr><td>Valor</td><td><input type="text" id = "valor" name="valor" /></td></tr>
+                <tr><td>Quantidade</td><td><input type="text" id = "quantidade" name="quantidade" /></td></tr>
+                <tr><td>Custo</td><td><input type="text" id = "custo" name="custo" /></td></tr>
+                <tr><td>Validade</td><td><input type="text" id = "validade" name="validade" /></td></tr>
+            </table>
+            <input type="submit" id="CreateRecord" value="CreateRecord" />
+        </form>
+        <a href="ListProduct"><strong>Go to List of products</strong></a>
         <a href="index.jsp"><strong>Back to Menu</strong></a>
     </body>
 </html>

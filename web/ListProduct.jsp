@@ -40,35 +40,35 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>List Of Persons</title>
+        <title>List Of Products</title>
     </head>
     <body>
 
-        <h1>List of Persons currently in Database</h1>
+        <h1>List of Products currently in Database</h1>
 
-        <table id="personListTable" border="3">
+        <table id="productsListTable" border="3">
             <tr >
                 <th bgcolor=>ID</th>
-                <th bgcolor=>FirstName</th>
-                <th bgcolor=>LastName</th>
-                <th bgcolor=>docRG</th>
-                <th bgcolor=>docCPF</th>
-                <th bgcolor=>dataNasc</th>
+                <th bgcolor=>Descrição</th>
+                <th bgcolor=>Valor</th>
+                <th bgcolor=>Quantidade</th>
+                <th bgcolor=>Custo</th>
+                <th bgcolor=>Validade</th>
             </tr>
-            <c:forEach var="person" begin="0" items="${requestScope.personList}">
+            <c:forEach var="products" begin="0" items="${requestScope.productList}">
                 <tr>
-                    <td>${person.id}&nbsp;&nbsp;</td> 
-                    <td>${person.firstName}&nbsp;&nbsp;</td> 
-                    <td>${person.lastName}&nbsp;&nbsp;</td> 
-                    <td>${person.docRG}&nbsp;&nbsp;</td> 
-                    <td>${person.docCPF}&nbsp;&nbsp;</td> 
-                    <td>${person.dataNasc}&nbsp;&nbsp;</td> 
+                    <td>${products.id}&nbsp;&nbsp;</td> 
+                    <td>${products.descricao}&nbsp;&nbsp;</td> 
+                    <td>${products.valor}&nbsp;&nbsp;</td> 
+                    <td>${products.quantidade}&nbsp;&nbsp;</td> 
+                    <td>${products.custo}&nbsp;&nbsp;</td> 
+                    <td>${products.validade}&nbsp;&nbsp;</td> 
                 </tr> 
 
             </c:forEach>
 
         </table>
-        <a href="CreatePerson.jsp"><strong>Create a Person Record</strong></a>
+        <a href="CreateProduct.jsp"><strong>Create a Product Record</strong></a>
         <a href="index.jsp"><strong>Back to Menu</strong></a>
     </body>
 </html>

@@ -27,7 +27,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 package enterprise.web_jpa_war.servlet;
 
 import java.io.*;
@@ -43,18 +42,21 @@ import javax.persistence.EntityManager;
 /**
  * The servlet class to list Persons from database
  */
-@WebServlet(name="ListPersonServlet", urlPatterns={"/ListPerson"})
+@WebServlet(name = "ListPersonServlet", urlPatterns = {"/ListPerson"})
 public class ListPersonServlet extends HttpServlet {
-    
+
     @PersistenceUnit
     private EntityManagerFactory emf;
-    
-    /** Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         assert emf != null;  //Make sure injection went through correctly.
         EntityManager em = null;
         try {
@@ -62,41 +64,46 @@ public class ListPersonServlet extends HttpServlet {
 
             //query for all the persons in database
             List persons = em.createQuery("select p from Person p").getResultList();
-            request.setAttribute("personList",persons);
-            
+            request.setAttribute("personList", persons);
+
             //Forward to the jsp page for rendering
             request.getRequestDispatcher("ListPerson.jsp").forward(request, response);
         } catch (Exception ex) {
             throw new ServletException(ex);
         } finally {
             //close the em to release any resources held up by the persistebce provider
-            if(em != null) {
+            if (em != null) {
                 em.close();
             }
         }
-      
+
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** Handles the HTTP <code>GET</code> method.
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
-    
-    /** Handles the HTTP <code>POST</code> method.
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
-    
-    /** Returns a short description of the servlet.
+
+    /**
+     * Returns a short description of the servlet.
      */
     public String getServletInfo() {
         return "ListPerson servlet";

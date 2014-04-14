@@ -31,7 +31,7 @@
  */
 package enterprise.web_jpa_war.servlet;
 
-import enterprise.web_jpa_war.entity.Person;
+import enterprise.web_jpa_war.entity.Product;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -49,8 +49,8 @@ import javax.transaction.UserTransaction;
 /**
  * The sevelet class to insert Person into database
  */
-@WebServlet(name = "CreatePersonServlet", urlPatterns = {"/CreatePerson"})
-public class CreatePersonServlet extends HttpServlet {
+@WebServlet(name = "CreateProductServlet", urlPatterns = {"/CreateProduct"})
+public class CreateProductServlet extends HttpServlet {
 
     @PersistenceUnit
     //The emf corresponding to 
@@ -73,16 +73,16 @@ public class CreatePersonServlet extends HttpServlet {
         try {
             //TODO implementar tratamento de exceções.
             //Get the data from user's form
-            String firstName = (String) request.getParameter("firstName");
-            String lastName = (String) request.getParameter("lastName");
-            String docRG = (String) request.getParameter("docRG");
-            String docCPF = (String) request.getParameter("docCPF");
+            String descricao = (String) request.getParameter("descricao");
+            Float valor = (Float) Float.parseFloat(request.getParameter("valor"));
+            Float quantidade = (Float) Float.parseFloat(request.getParameter("quantidade"));
+            Float custo = (Float) Float.parseFloat(request.getParameter("custo"));
 
             DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            Date dataNasc = (Date) formatter.parse(request.getParameter("dataNasc"));
+            Date validade = (Date) formatter.parse(request.getParameter("validade"));
 
             //Create a person instance out of it
-            Person person = new Person(firstName, lastName, docRG, docCPF, dataNasc);
+            Product product = new Product(descricao, valor, quantidade, custo, validade);
 
             //begin a transaction
             utx.begin();
@@ -90,15 +90,15 @@ public class CreatePersonServlet extends HttpServlet {
             //Since the em is created inside a transaction, it is associsated with 
             //the transaction
             em = emf.createEntityManager();
-            //persist the person entity
-            em.persist(person);
+            //persist the product entity
+            em.persist(product);
             //commit transaction which will trigger the em to 
             //commit newly created entity into database
             utx.commit();
 
             //Forward to ListPerson servlet to list persons along with the newly
             //created person above
-            request.getRequestDispatcher("ListPerson").forward(request, response);
+            request.getRequestDispatcher("ListProduct").forward(request, response);
         } catch (Exception ex) {
             throw new ServletException(ex);
         } finally {

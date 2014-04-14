@@ -46,66 +46,66 @@ import javax.persistence.TemporalType;
  * @alterado por wyamashita
  */
 @Entity
-@Table(name = "PERSON")
-public class Person implements java.io.Serializable {
+@Table(name = "PRODUCT")
+public class Product implements java.io.Serializable {
 
     @Id
-    @SequenceGenerator(name = "Person_ID", sequenceName = "Person_ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Person_ID")
-    @Column(name = "Person_ID")
-    private Integer person_ID;
+    @SequenceGenerator(name = "Prod_ID", sequenceName = "Prod_ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Prod_ID")
+    @Column(name = "Prod_ID")
+    private Integer prod_ID;
 
-    @Column(name = "lastName")
-    private String lastName;
+    @Column(name = "descricao")
+    private String descricao;
 
-    @Column(name = "firstName")
-    private String firstName;
+    @Column(name = "valor")
+    private Float valor;
 
-    @Column(name = "docRG")
-    private String docRG;
+    @Column(name = "quantidade")
+    private Float quantidade;
 
-    @Column(name = "docCPF")
-    private String docCPF;
+    @Column(name = "custo")
+    private Float custo;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "dataNasc")
-    private Date dataNasc;
+    @Column(name = "validade")
+    private Date validade;
 
     /**
      * Creates a new instance of Person
      */
-    public Person() {
+    public Product() {
     }
 
-    public Person(String firstName, String lastName, String docRG, String docCPF, Date dataNasc) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.docRG = docRG;
-        this.docCPF = docCPF;
-        this.dataNasc = dataNasc;
+    public Product(String descricao, Float valor, Float quantidade, Float custo, Date validade) {
+        this.descricao = descricao;
+        this.valor = valor;
+        this.quantidade = quantidade;
+        this.custo = custo;
+        this.validade = validade;
     }
 
     public Integer getId() {
-        return this.person_ID;
+        return this.prod_ID;
     }
 
-    public String getLastName() {
-        return this.lastName;
+    public String getDescricao() {
+        return this.descricao;
     }
 
-    public String getFirstName() {
-        return this.firstName;
+    public Float getValor() {
+        return this.valor;
     }
 
-    public String getDocRG() {
-        return this.docRG;
+    public Float getQuantidade() {
+        return this.quantidade;
     }
 
-    public String getDocCPF() {
-        return this.docCPF;
+    public Float getCusto() {
+        return this.custo;
     }
 
-    public Date getDataNasc() {
-        return this.dataNasc;
+    public Date getValidade() {
+        return this.validade;
     }
 }

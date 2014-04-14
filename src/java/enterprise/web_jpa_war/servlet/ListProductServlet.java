@@ -26,16 +26,11 @@
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
  * THE POSSIBILITY OF SUCH DAMAGE.
- *
- *@alterado por wyamashita
  */
 package enterprise.web_jpa_war.servlet;
 
-import enterprise.web_jpa_war.entity.Person;
 import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -43,21 +38,15 @@ import javax.servlet.http.*;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
-import javax.annotation.Resource;
-import javax.transaction.UserTransaction;
 
 /**
- * The sevelet class to insert Person into database
+ * The servlet class to list Persons from database
  */
-@WebServlet(name = "CreatePersonServlet", urlPatterns = {"/CreatePerson"})
-public class CreatePersonServlet extends HttpServlet {
+@WebServlet(name = "ListProductServlet", urlPatterns = {"/ListProduct"})
+public class ListProductServlet extends HttpServlet {
 
     @PersistenceUnit
-    //The emf corresponding to 
     private EntityManagerFactory emf;
-
-    @Resource
-    private UserTransaction utx;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -67,38 +56,18 @@ public class CreatePersonServlet extends HttpServlet {
      * @param response servlet response
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException {
+            throws ServletException, IOException {
         assert emf != null;  //Make sure injection went through correctly.
         EntityManager em = null;
         try {
-            //TODO implementar tratamento de exceções.
-            //Get the data from user's form
-            String firstName = (String) request.getParameter("firstName");
-            String lastName = (String) request.getParameter("lastName");
-            String docRG = (String) request.getParameter("docRG");
-            String docCPF = (String) request.getParameter("docCPF");
-
-            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            Date dataNasc = (Date) formatter.parse(request.getParameter("dataNasc"));
-
-            //Create a person instance out of it
-            Person person = new Person(firstName, lastName, docRG, docCPF, dataNasc);
-
-            //begin a transaction
-            utx.begin();
-            //create an em. 
-            //Since the em is created inside a transaction, it is associsated with 
-            //the transaction
             em = emf.createEntityManager();
-            //persist the person entity
-            em.persist(person);
-            //commit transaction which will trigger the em to 
-            //commit newly created entity into database
-            utx.commit();
 
-            //Forward to ListPerson servlet to list persons along with the newly
-            //created person above
-            request.getRequestDispatcher("ListPerson").forward(request, response);
+            //query for all the persons in database
+            List products = em.createQuery("select p from Product p").getResultList();
+            request.setAttribute("productList", products);
+
+            //Forward to the jsp page for rendering
+            request.getRequestDispatcher("ListProduct.jsp").forward(request, response);
         } catch (Exception ex) {
             throw new ServletException(ex);
         } finally {
@@ -107,6 +76,7 @@ public class CreatePersonServlet extends HttpServlet {
                 em.close();
             }
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -136,7 +106,7 @@ public class CreatePersonServlet extends HttpServlet {
      * Returns a short description of the servlet.
      */
     public String getServletInfo() {
-        return "Short description";
+        return "ListProduct servlet";
     }
     // </editor-fold>
 }

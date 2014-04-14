@@ -45,73 +45,81 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
     <head>
         <link href="<c:url value='/menu-2.css' />" rel="stylesheet" type="text/css" />
         <script type="text/javascript">
-            var sse50 = function() {
-                return {
-                    initMenu: function() {
-                        var m = document.getElementById('sses50');
-                        if (!m)
-                            return;
-                        m.style.width = m.getElementsByTagName("ul")[0].offsetWidth + 1 + "px";
-                        var url = document.location.href.toLowerCase();
-                        var a = m.getElementsByTagName("a");
-                        var k = -1;
-                        var l = -1;
-                        var hasEnd = 0;
-                        for (var i = 0; i < a.length; i++) {
-                            if (a[i].href && url.indexOf(a[i].href.toLowerCase()) !== -1 && a[i].href.length > l) {
-                                k = i;
-                                l = a[i].href.length;
-                            }
-                            if (a[i].className === "end")
-                                hasEnd = 1;
-                        }
-                        if (k === -1 && /:\/\/(?:www\.)?[^.\/]+?\.[^.\/]+\/?$/.test) {
-                            for (var i = 0; i < a.length; i++) {
-                                if (a[i].getAttribute("maptopuredomain") === "true") {
-                                    k = i;
-                                    break;
-                                }
-                            }
-                            if (k === -1 && a[0].getAttribute("maptopuredomain") !== "false")
-                                k = 0;
-                        }
-                        if (k > -1) {
-                            a[k].className = 'current';
-                        }
-                        l = a.length;
-                        if (hasEnd)
-                            l--;
-                        for (i = 0; i < l; i++) {
-                            a[i].onmouseover = function() {
-                                for (j = 0; j < l; j++) {
-                                    a[j].className = '';
-                                }
-                                this.className = 'current';
-                            };
-                            a[i].onmouseout = function() {
-                                for (j = 0; j < l; j++) {
-                                    a[j].className = '';
-                                    if (k > -1) {
-                                        a[k].className = 'current';
-                                    }
-                                }
-                            };
-                        }
-                    }
-                };
-            }();
+            // Copyright 2006-2007 javascript-array.com
+
+            var timeout = 500;
+            var closetimer = 0;
+            var ddmenuitem = 0;
+
+// open hidden layer
+            function mopen(id)
+            {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem)
+                    ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+// close showed layer
+            function mclose()
+            {
+                if (ddmenuitem)
+                    ddmenuitem.style.visibility = 'hidden';
+            }
+
+// go close timer
+            function mclosetime()
+            {
+                closetimer = window.setTimeout(mclose, timeout);
+            }
+
+// cancel close timer
+            function mcancelclosetime()
+            {
+                if (closetimer)
+                {
+                    window.clearTimeout(closetimer);
+                    closetimer = null;
+                }
+            }
+
+// close layer when click-out
+            document.onclick = mclose;
         </script>
     </head>
     <body>
-        <div id="sse50">
-            <div id="sses50">
-                <ul>
-                    <li><a href="?menu=50&skin=2&p=Javascript-Menus"><a href="ListPerson.jsp"><strong>List a Person Record</strong></a></a></li>
-                    <li><a href="?menu=50&skin=2&p=Horizontal-Menus">Horizontal Menus</a></li>
-                    <li><a href="?menu=50&skin=2&p=Web-Menus">Web Menus</a></li>
-                </ul>
-            </div>
-        </div>
+        <ul id="sddm">
+            <li><a href="#" 
+                   onmouseover="mopen('m1')" 
+                   onmouseout="mclosetime()">Clientes</a>
+                <div id="m1" 
+                     onmouseover="mcancelclosetime()" 
+                     onmouseout="mclosetime()">
+                    <a href="CreatePerson.jsp">Cadastro</a>
+                    <a href="#">Relatórios</a>
+                </div>
+            </li>
+            <li><a href="#" 
+                   onmouseover="mopen('m2')" 
+                   onmouseout="mclosetime()">Produtos</a>
+                <div id="m2" 
+                     onmouseover="mcancelclosetime()" 
+                     onmouseout="mclosetime()">
+                    <a href="CreateProduct.jsp">Cadastro</a>
+                    <a href="#">Relatórios</a>
+                </div>
+            </li>
+            <li><a href="#">Fichas</a></li>
+            <li><a href="#">Ordem de Serviço</a></li>
+            <li><a href="#">Sair\</a></li>
+        </ul>
+        <div style="clear:both"></div>
 
     </body>
 </html>
