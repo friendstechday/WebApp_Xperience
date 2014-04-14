@@ -38,22 +38,35 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="<c:url value='/css/menu-1.css' />" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/css/menu-2.css' />" rel="stylesheet" type="text/css" />
+        <jsp:include page="header.jspf"/>
         <title>Create a Person Record</title>
     </head>
     <body>
-
-        <h1>Create a Person record</h1>
-        <form id="createPersonForm" action="CreatePerson" method="post">
-            <table>
-                <tr><td>FirstName</td><td><input type="text" id = "firstName" name="firstName" /></td></tr>
-                <tr><td>LastName</td><td><input type="text" id = "lastName" name="lastName" /></td></tr>
-                <tr><td>docRG</td><td><input type="text" id = "docRG" name="docRG" /></td></tr>
-                <tr><td>docCPF</td><td><input type="text" id = "docCPF" name="docCPF" /></td></tr>
-                <tr><td>dataNasc</td><td><input type="text" id = "dataNasc" name="dataNasc" /></td></tr>
-            </table>
-            <input type="submit" id="CreateRecord" value="CreateRecord" />
-        </form>
-        <a href="ListPerson"><strong>Go to List of persons</strong></a>
-        <a href="index.jsp"><strong>Back to Menu</strong></a>
+        <div id="main">
+            <div id="indexLeftColumn">
+                <div id="welcomeText">
+                    <h1>Create a Person record</h1>
+                    <form id="createPersonForm" action="CreatePerson" method="post">
+                        <table>
+                            <tr><td align="left">FirstName</td><td><input type="text" id = "firstName" name="firstName" /></td></tr>
+                            <tr><td align="left">LastName</td><td><input type="text" id = "lastName" name="lastName" /></td></tr>
+                            <tr><td align="left">docRG</td><td><input type="text" id = "docRG" name="docRG" /></td></tr>
+                            <tr><td align="left">docCPF</td><td><input type="text" id = "docCPF" name="docCPF" /></td></tr>
+                            <tr><td align="left">dataNasc</td><td><input type="text" id = "dataNasc" name="dataNasc" /></td></tr>
+                        </table>
+                        <input type="submit" id="CreateRecord" value="CreateRecord" />
+                    </form>
+                    <ul id="sddm">
+                        <li><a href="ListPerson"><strong>Go to List of persons</strong></a></li>
+                        <li><a href="index.jsp"><strong>Back to Menu</strong></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </body>
+    <footer>
+        <jsp:include page="footer.jspf"/>
+    </footer>
 </html>

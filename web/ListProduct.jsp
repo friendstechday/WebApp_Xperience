@@ -40,35 +40,48 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="<c:url value='/css/menu-1.css' />" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/css/menu-2.css' />" rel="stylesheet" type="text/css" />
+        <jsp:include page="header.jspf"/>
         <title>List Of Products</title>
     </head>
     <body>
+        <div id="main">
+            <div id="indexRightColumn">
+                <h1>List of Products currently in Database</h1>
 
-        <h1>List of Products currently in Database</h1>
+                <table id="productsListTable" border="3">
+                    <tr >
+                        <th bgcolor=>ID</th>
+                        <th bgcolor=>Descrição</th>
+                        <th bgcolor=>Valor</th>
+                        <th bgcolor=>Quantidade</th>
+                        <th bgcolor=>Custo</th>
+                        <th bgcolor=>Validade</th>
+                    </tr>
+                    <c:forEach var="products" begin="0" items="${requestScope.productList}">
+                        <tr>
+                            <td>${products.id}&nbsp;&nbsp;</td> 
+                            <td>${products.descricao}&nbsp;&nbsp;</td> 
+                            <td>${products.valor}&nbsp;&nbsp;</td> 
+                            <td>${products.quantidade}&nbsp;&nbsp;</td> 
+                            <td>${products.custo}&nbsp;&nbsp;</td> 
+                            <td>${products.validade}&nbsp;&nbsp;</td> 
+                        </tr> 
 
-        <table id="productsListTable" border="3">
-            <tr >
-                <th bgcolor=>ID</th>
-                <th bgcolor=>Descrição</th>
-                <th bgcolor=>Valor</th>
-                <th bgcolor=>Quantidade</th>
-                <th bgcolor=>Custo</th>
-                <th bgcolor=>Validade</th>
-            </tr>
-            <c:forEach var="products" begin="0" items="${requestScope.productList}">
-                <tr>
-                    <td>${products.id}&nbsp;&nbsp;</td> 
-                    <td>${products.descricao}&nbsp;&nbsp;</td> 
-                    <td>${products.valor}&nbsp;&nbsp;</td> 
-                    <td>${products.quantidade}&nbsp;&nbsp;</td> 
-                    <td>${products.custo}&nbsp;&nbsp;</td> 
-                    <td>${products.validade}&nbsp;&nbsp;</td> 
-                </tr> 
+                    </c:forEach>
 
-            </c:forEach>
+                </table>
+                <ul id="sddm">
 
-        </table>
-        <a href="CreateProduct.jsp"><strong>Create a Product Record</strong></a>
-        <a href="index.jsp"><strong>Back to Menu</strong></a>
+                    <li><a href="CreateProduct.jsp"><strong>Create a Product Record</strong></a></li>
+                    <li><a href="index.jsp"><strong>Back to Menu</strong></a></li>
+                </ul>
+
+            </div>
+        </div>
     </body>
+    <footer>
+        <jsp:include page="footer.jspf"/>
+    </footer>
 </html>

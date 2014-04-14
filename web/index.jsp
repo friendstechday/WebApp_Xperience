@@ -43,83 +43,45 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 
 <html>
     <head>
-        <link href="<c:url value='/menu-2.css' />" rel="stylesheet" type="text/css" />
-        <script type="text/javascript">
-            // Copyright 2006-2007 javascript-array.com
-
-            var timeout = 500;
-            var closetimer = 0;
-            var ddmenuitem = 0;
-
-// open hidden layer
-            function mopen(id)
-            {
-                // cancel close timer
-                mcancelclosetime();
-
-                // close old layer
-                if (ddmenuitem)
-                    ddmenuitem.style.visibility = 'hidden';
-
-                // get new layer and show it
-                ddmenuitem = document.getElementById(id);
-                ddmenuitem.style.visibility = 'visible';
-
-            }
-// close showed layer
-            function mclose()
-            {
-                if (ddmenuitem)
-                    ddmenuitem.style.visibility = 'hidden';
-            }
-
-// go close timer
-            function mclosetime()
-            {
-                closetimer = window.setTimeout(mclose, timeout);
-            }
-
-// cancel close timer
-            function mcancelclosetime()
-            {
-                if (closetimer)
-                {
-                    window.clearTimeout(closetimer);
-                    closetimer = null;
-                }
-            }
-
-// close layer when click-out
-            document.onclick = mclose;
-        </script>
+        <link href="<c:url value='/css/menu-1.css' />" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/css/menu-2.css' />" rel="stylesheet" type="text/css" />
+        <title>WebApp </title>
+        <jsp:include page="header.jspf"/>
     </head>
     <body>
-        <ul id="sddm">
-            <li><a href="#" 
-                   onmouseover="mopen('m1')" 
-                   onmouseout="mclosetime()">Clientes</a>
-                <div id="m1" 
-                     onmouseover="mcancelclosetime()" 
-                     onmouseout="mclosetime()">
-                    <a href="CreatePerson.jsp">Cadastro</a>
-                    <a href="#">Relatórios</a>
+        <div id="main">
+            <div id="indexLeftColumn">
+                <div id="welcomeText">
+                    <p>[ welcome text ]</p>
                 </div>
-            </li>
-            <li><a href="#" 
-                   onmouseover="mopen('m2')" 
-                   onmouseout="mclosetime()">Produtos</a>
-                <div id="m2" 
-                     onmouseover="mcancelclosetime()" 
-                     onmouseout="mclosetime()">
-                    <a href="CreateProduct.jsp">Cadastro</a>
-                    <a href="#">Relatórios</a>
+            </div>
+
+            <div id="indexRightColumn">
+                <div class="categoryBox">
+                    <a href="#">
+                        <span class="categoryLabelText">dairy</span>
+                    </a>
                 </div>
-            </li>
-            <li><a href="#">Fichas</a></li>
-            <li><a href="#">Ordem de Serviço</a></li>
-            <li><a href="#">Sair\</a></li>
-        </ul>
-        <div style="clear:both"></div>
+                <div class="categoryBox">
+                    <a href="#">
+                        <span class="categoryLabelText">meats</span>
+                    </a>
+                </div>
+                <div class="categoryBox">
+                    <a href="#">
+                        <span class="categoryLabelText">bakery</span>
+                    </a>
+                </div>
+                <div class="categoryBox">
+                    <a href="#">
+                        <span class="categoryLabelText">fruit & veg</span>
+                    </a>
+                </div>
+            </div>
+        </div>
 
     </body>
+    <footer>
+        <jsp:include page="footer.jspf"/>
+    </footer>
 </html>

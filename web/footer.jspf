@@ -1,0 +1,19 @@
+<!-- 
+    Document   : footer
+    Created on : 14/04/2014, 10:55:57
+    Author     : wyamashita
+-->
+
+<page contentType="text/html" pageEncoding="UTF-8">
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div id="footer">
+                
+                <p id="footerText">[ footer text teste ]</p>
+            </div>
+    </body>
+</html>

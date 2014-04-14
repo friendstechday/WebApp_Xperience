@@ -38,22 +38,33 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="<c:url value='/css/menu-1.css' />" rel="stylesheet" type="text/css" />
+        <link href="<c:url value='/css/menu-2.css' />" rel="stylesheet" type="text/css" />
+        <jsp:include page="header.jspf"/>
         <title>Create a Product Record</title>
     </head>
     <body>
-
-        <h1>Create a Product record</h1>
-        <form id="createProductForm" action="CreateProduct" method="post">
-            <table>
-                <tr><td>Descrição</td><td><input type="text" id = "descricao" name="descricao" /></td></tr>
-                <tr><td>Valor</td><td><input type="text" id = "valor" name="valor" /></td></tr>
-                <tr><td>Quantidade</td><td><input type="text" id = "quantidade" name="quantidade" /></td></tr>
-                <tr><td>Custo</td><td><input type="text" id = "custo" name="custo" /></td></tr>
-                <tr><td>Validade</td><td><input type="text" id = "validade" name="validade" /></td></tr>
-            </table>
-            <input type="submit" id="CreateRecord" value="CreateRecord" />
-        </form>
-        <a href="ListProduct"><strong>Go to List of products</strong></a>
-        <a href="index.jsp"><strong>Back to Menu</strong></a>
+        <div id="indexLeftColumn">
+            <div id="welcomeText">
+                <h1>Create a Product record</h1>
+                <form id="createProductForm" action="CreateProduct" method="post">
+                    <table>
+                        <tr><td align="left">Descrição</td><td><input type="text" id = "descricao" name="descricao" /></td></tr>
+                        <tr><td align="left">Valor</td><td><input type="text" id = "valor" name="valor" /></td></tr>
+                        <tr><td align="left">Quantidade</td><td><input type="text" id = "quantidade" name="quantidade" /></td></tr>
+                        <tr><td align="left">Custo</td><td><input type="text" id = "custo" name="custo" /></td></tr>
+                        <tr><td align="left">Validade</td><td><input type="text" id = "validade" name="validade" /></td></tr>
+                    </table>
+                    <input type="submit" id="CreateRecord" value="CreateRecord" />
+                </form>
+                <ul id="sddm">
+                    <li><a href="ListProduct"><strong>Go to List of products</strong></a></li>
+                    <li><a href="index.jsp"><strong>Back to Menu</strong></a></li>
+                </ul>
+            </div>
+        </div>        
     </body>
+    <footer>
+        <jsp:include page="footer.jspf"/>
+    </footer>
 </html>

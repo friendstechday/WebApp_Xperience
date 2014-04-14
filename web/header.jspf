@@ -1,0 +1,76 @@
+<!-- 
+    Document   : header
+    Created on : 14/04/2014, 10:55:48
+    Author     : wyamashita
+-->
+
+<page contentType="text/html" pageEncoding="UTF-8">
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script language="javascript" type="text/javascript" src="js/menujs.js"></script>
+        <title>The Affable Bean</title>
+    </head>
+    <body>
+        <div id="main">
+            <div id="header">
+                <div id="widgetBar">
+                    <div class="headerWidget">
+                        <ul id="sddm">
+                            <li><a href="#" 
+                                   onmouseover="mopen('m1')" 
+                                   onmouseout="mclosetime()">Clientes</a>
+                                <div id="m1" 
+                                     onmouseover="mcancelclosetime()" 
+                                     onmouseout="mclosetime()">
+                                    <a href="CreatePerson.jsp">Cadastro</a>
+                                    <a href="ListPerson.jsp">Listar Clientes</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <div style="clear:both"></div>
+                    </div>
+                    <div class="headerWidget">
+                        <ul id="sddm">
+                            <li><a href="#" 
+                                   onmouseover="mopen('m2')" 
+                                   onmouseout="mclosetime()">Produtos</a>
+                                <div id="m2" 
+                                     onmouseover="mcancelclosetime()" 
+                                     onmouseout="mclosetime()">
+                                    <a href="CreateProduct.jsp">Cadastro</a>
+                                    <a href="ListProduct.jsp">Listar Produtos</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <div style="clear:both"></div>
+                    </div>
+                    <div class="headerWidget">
+                        <ul id="sddm">
+                            <li><a href="#">Fichas</a></li>
+                        </ul>
+                        <div style="clear:both"></div>
+                    </div>
+                    <div class="headerWidget">
+                        <ul id="sddm">
+                            <li><a href="#">Serviço</a></li>
+                        </ul>
+                        <div style="clear:both"></div>
+                    </div>
+                    <div class="headerWidget">
+                        <ul id="sddm">
+                            <li><a href="#">Sair</a></li>
+                        </ul>
+                        <div style="clear:both"></div>
+                    </div>
+                </div>
+                <!--<a href="#">
+                    <img src="#" id="logo" alt="Affable Bean logo">
+                </a>
+                <img src="#" id="logoText" alt="the affable bean">-->
+            </div>
+        </div>    
+    </body>
+</html>
