@@ -23,11 +23,11 @@ body {
 }
 
 #logo {
-    height: 155px;
-    width: 155px;
+    height: 197px;
+    width: 800px;
     float: left;
     margin-left: 30px;
-    margin-top: -20px;
+    margin-top: 0px;
 }
 
 #logoText {

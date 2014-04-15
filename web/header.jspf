@@ -61,15 +61,15 @@
                     </div>
                     <div class="headerWidget">
                         <ul id="sddm">
-                            <li><a href="#">Sair</a></li>
+                            <li><a href="http://www.google.com">Sair</a></li>
                         </ul>
                         <div style="clear:both"></div>
                     </div>
                 </div>
-                <!--<a href="#">
-                    <img src="#" id="logo" alt="Affable Bean logo">
+                <a href="#">
+                    <img height="200px" width="800px" margin-top="0px" src="images/ecommerce-banner.png" id="logo" alt="logo">
                 </a>
-                <img src="#" id="logoText" alt="the affable bean">-->
+                <!--<img src="#" id="logoText" alt="the affable bean">-->
             </div>
         </div>    
     </body>
